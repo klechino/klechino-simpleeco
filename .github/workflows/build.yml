@@ -2,7 +2,7 @@ name: Build ArcticSus
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, arcticsus-build-1.0.1 ]
   workflow_dispatch:
 
 jobs:
