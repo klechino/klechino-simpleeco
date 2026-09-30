@@ -1,0 +1,35 @@
+name: ArcticSus
+version: '${version}'
+main: com.arcticsus.ArcticSusPlugin
+api-version: '26.2'
+author: ArcticSus
+commands:
+  sus:
+    description: Opens the ArcticSus suspicious player monitor.
+    usage: /sus
+    permission: arcticsus.sus
+permissions:
+  arcticsus.*:
+    description: Grants all ArcticSus permissions.
+    default: op
+    children:
+      arcticsus.sus: true
+      arcticsus.inspect: true
+      arcticsus.teleport: true
+      arcticsus.ban: true
+      arcticsus.clear: true
+  arcticsus.sus:
+    description: Open the ArcticSus monitor.
+    default: op
+  arcticsus.inspect:
+    description: Inspect suspicious players.
+    default: op
+  arcticsus.teleport:
+    description: Teleport to suspicious players.
+    default: op
+  arcticsus.ban:
+    description: Ban suspicious players.
+    default: op
+  arcticsus.clear:
+    description: Clear suspicious-player statistics.
+    default: op
