@@ -22,7 +22,7 @@ tasks.withType<JavaCompile>().configureEach {
     options.release.set(25)
 }
 
-processResources {
+tasks.named<ProcessResources>("processResources") {
     filesMatching("plugin.yml") {
         expand("version" to project.version)
     }
