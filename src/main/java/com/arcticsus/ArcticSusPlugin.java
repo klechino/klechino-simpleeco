@@ -84,7 +84,7 @@ public final class ArcticSusPlugin extends JavaPlugin implements CommandExecutor
         }
         List<ActionButton> acts=new ArrayList<>();
         acts.add(ActionButton.builder(Component.text("Refresh",NamedTextColor.AQUA)).width(120)
-                .action(DialogAction.commandTemplate("sus")).build());
+                .action(DialogAction.staticAction(ClickEvent.runCommand("/sus"))).build());
         acts.add(ActionButton.builder(Component.text("Close",NamedTextColor.GRAY)).width(120).build());
         Dialog d=Dialog.create(b->b.empty().base(DialogBase.builder(Component.text("❄ ARCTIC SUS",NamedTextColor.AQUA).decorate(TextDecoration.BOLD))
                 .body(body).canCloseWithEscape(true).build()).type(DialogType.multiAction(acts,null,2)));
@@ -100,17 +100,17 @@ public final class ArcticSusPlugin extends JavaPlugin implements CommandExecutor
                 DialogBody.plainMessage(Component.text("Last detection: ",NamedTextColor.GRAY).append(Component.text(age(r.last),NamedTextColor.WHITE)))
         );
         List<ActionButton> a=new ArrayList<>();
-        if(p.hasPermission(TP))a.add(ActionButton.builder(Component.text("TPA / Teleport",NamedTextColor.AQUA)).width(150).action(DialogAction.commandTemplate("sus teleport "+u)).build());
-        if(p.hasPermission(BAN))a.add(ActionButton.builder(Component.text("Ban",NamedTextColor.RED)).width(110).action(DialogAction.commandTemplate("sus banconfirm "+u)).build());
-        if(p.hasPermission(CLEAR))a.add(ActionButton.builder(Component.text("Clear Stats",NamedTextColor.YELLOW)).width(140).action(DialogAction.commandTemplate("sus clear "+u)).build());
-        a.add(ActionButton.builder(Component.text("Back",NamedTextColor.GRAY)).width(100).action(DialogAction.commandTemplate("sus")).build());
+        if(p.hasPermission(TP))a.add(ActionButton.builder(Component.text("TPA / Teleport",NamedTextColor.AQUA)).width(150).action(DialogAction.staticAction(ClickEvent.runCommand("/sus teleport "+u))).build());
+        if(p.hasPermission(BAN))a.add(ActionButton.builder(Component.text("Ban",NamedTextColor.RED)).width(110).action(DialogAction.staticAction(ClickEvent.runCommand("/sus banconfirm "+u))).build());
+        if(p.hasPermission(CLEAR))a.add(ActionButton.builder(Component.text("Clear Stats",NamedTextColor.YELLOW)).width(140).action(DialogAction.staticAction(ClickEvent.runCommand("/sus clear "+u))).build());
+        a.add(ActionButton.builder(Component.text("Back",NamedTextColor.GRAY)).width(100).action(DialogAction.staticAction(ClickEvent.runCommand("/sus"))).build());
         p.showDialog(Dialog.create(b->b.empty().base(DialogBase.builder(Component.text("❄ PLAYER INVESTIGATION",NamedTextColor.AQUA).decorate(TextDecoration.BOLD))
                 .body(body).canCloseWithEscape(true).build()).type(DialogType.multiAction(a,null,Math.min(2,a.size())))));
     }
 
     private void banConfirm(Player p,R r){
-        ActionButton yes=ActionButton.builder(Component.text("CONFIRM BAN",NamedTextColor.RED)).width(150).action(DialogAction.commandTemplate("sus ban "+r.uuid)).build();
-        ActionButton no=ActionButton.builder(Component.text("Cancel",NamedTextColor.GRAY)).width(120).action(DialogAction.commandTemplate("sus inspect "+r.uuid)).build();
+        ActionButton yes=ActionButton.builder(Component.text("CONFIRM BAN",NamedTextColor.RED)).width(150).action(DialogAction.staticAction(ClickEvent.runCommand("/sus ban "+r.uuid))).build();
+        ActionButton no=ActionButton.builder(Component.text("Cancel",NamedTextColor.GRAY)).width(120).action(DialogAction.staticAction(ClickEvent.runCommand("/sus inspect "+r.uuid))).build();
         p.showDialog(Dialog.create(b->b.empty().base(DialogBase.builder(Component.text("CONFIRM BAN",NamedTextColor.RED).decorate(TextDecoration.BOLD))
                 .body(List.of(DialogBody.item(head(r.uuid),DialogBody.plainMessage(Component.text("Ban "+r.name+"?",NamedTextColor.WHITE)),false,true,360,72),
                         DialogBody.plainMessage(Component.text("This executes the configured server ban command.",NamedTextColor.GRAY))))
