@@ -1,0 +1,8 @@
+minimum-flags: 1
+max-players: 18
+ban-command: "ban {player} Suspicious activity"
+messages:
+  no-permission: "<red>You do not have permission to use ArcticSus.</red>"
+  no-suspicious: "<gray>No suspicious players are currently flagged.</gray>"
+  stats-cleared: "<green>ArcticSus stats cleared for {player}.</green>"
+  teleported: "<green>Teleported to {player}.</green>"
